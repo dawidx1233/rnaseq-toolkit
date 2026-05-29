@@ -1,6 +1,7 @@
 # rnaseq-toolkit
 
-[![CI](https://github.com/rnaseq-toolkit/rnaseq-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/rnaseq-toolkit/rnaseq-toolkit/actions)
+[![CI](https://github.com/dawidx1233/rnaseq-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/dawidx1233/rnaseq-toolkit/actions)
+[![PyPI version](https://badge.fury.io/py/rnaseq-toolkit.svg)](https://pypi.org/project/rnaseq-toolkit/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-pending-lightgrey)](CITATION.cff)
@@ -21,13 +22,13 @@
 ## Installation
 
 ```bash
-pip install rnaseq_toolkit
+pip install rnaseq-toolkit
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/rnaseq-toolkit/rnaseq-toolkit.git
+git clone https://github.com/dawidx1233/rnaseq-toolkit.git
 cd rnaseq-toolkit
 pip install -e ".[dev]"
 ```
