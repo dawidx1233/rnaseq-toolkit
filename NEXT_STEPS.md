@@ -10,20 +10,25 @@
 
 Repozytorium jest obecnie **prywatne**. Przed submisją artykułu należy je upublicznić:
 
-1. Wejdź na https://github.com/dawidx1233/rnaseq-toolkit
-2. **Settings → General → Danger Zone → Change repository visibility → Make public**
-3. Potwierdź operację.
+1. Wejdź na [https://github.com/dawidx1233/rnaseq-toolkit](https://github.com/dawidx1233/rnaseq-toolkit)
+
+1. **Settings → General → Danger Zone → Change repository visibility → Make public**
+
+1. Potwierdź operację.
 
 > **Ważne:** Zarówno Bioinformatics, jak i JOSS wymagają publicznie dostępnego kodu w momencie submisji.
 
 ### 1.2 Dodanie GitHub Actions CI/CD
 
-Plik `.github/workflows/ci.yml` jest gotowy lokalnie, ale nie mógł zostać wgrany przez API (brak uprawnień `workflows`). Dodaj go ręcznie:
+Plik `.github/workflows/ci.yml` jest gotowy lokalnie, ale nie mógł zostać wgrany przez API (brak uprawnień `workflows` ). Dodaj go ręcznie:
 
 1. Na stronie repozytorium kliknij **Add file → Create new file**
-2. Wpisz nazwę: `.github/workflows/ci.yml`
-3. Wklej zawartość z pliku lokalnego (dostępna w archiwum ZIP projektu)
-4. Kliknij **Commit changes**
+
+1. Wpisz nazwę: `.github/workflows/ci.yml`
+
+1. Wklej zawartość z pliku lokalnego (dostępna w archiwum ZIP projektu)
+
+1. Kliknij **Commit changes**
 
 CI uruchomi automatycznie testy `pytest` przy każdym pushu.
 
@@ -98,7 +103,9 @@ vignettes/
 Dane pobrane i przetworzone: **GSE123509** (Tpp1-/- NCL mouse model, bulk RNA-seq, Mus musculus).
 
 - Lokalizacja na serwerze: `/projekt/rnaseq-toolkit/data/batten/`
+
 - Wyniki DEA: `/projekt/rnaseq-toolkit/results/benchmark/batten_deseq2_results.csv`
+
 - Wyniki: **4829 DEGs** (DESeq2), **4252 DEGs** (edgeR-like), korelacja LFC r = 0.396
 
 > Niska korelacja LFC (r = 0.396) między metodami jest **biologicznie uzasadniona** i stanowi wartościowy wynik benchmarku — wskazuje, że wybór metody ma istotny wpływ na wyniki w małych próbkach (n=3 per group). To mocny argument dla artykułu.
@@ -140,14 +147,17 @@ print('GSEA done:', len(gsea_res), 'pathways')
 Szkic artykułu (`paper/paper.md`) wymaga uzupełnienia o:
 
 - **Tabelę benchmarku** (wszystkie 3 zestawy danych) — wstaw tabelę z `results/benchmark/benchmark_table.csv`
+
 - **Rysunek 1** — panel z wykresami volcano dla wszystkich 3 zestawów
+
 - **Rysunek 2** — PCA + heatmap dla Batten disease
+
 - **Sekcję Batten disease** — opisz biologiczne znaczenie znalezionych DEGs (Foxg1, Gabra6, Pcp2)
 
 ### 4.2 Kluczowe geny Batten disease do opisu w artykule
 
 | Gen | log2FC | Znaczenie biologiczne |
-|---|---|---|
+| --- | --- | --- |
 | `Foxg1` | +10.87 | Transkrypcyjny regulator rozwoju mózgu, marker neuronów |
 | `Gabra6` | −10.66 | Receptor GABA-A, marker komórek Purkinjego (móżdżek) |
 | `Pcp2` | −10.59 | Marker komórek Purkinjego — utrata w NCL |
@@ -160,7 +170,7 @@ Szkic artykułu (`paper/paper.md`) wymaga uzupełnienia o:
 ### 4.3 Docelowe czasopismo — kolejność submisji
 
 | Priorytet | Czasopismo | Format | Punkty MEiN | Opłata |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 1 | **Bioinformatics** (Oxford) | Application Note (max. 2 str.) | 200 | ~2 500 USD |
 | 2 | **BMC Bioinformatics** | Software article | 100 | ~2 000 USD |
 | 3 | **JOSS** | Software paper (max. 1000 słów) | — | **bezpłatne** |
@@ -170,14 +180,20 @@ Szkic artykułu (`paper/paper.md`) wymaga uzupełnienia o:
 ### 4.4 Wymagania JOSS
 
 JOSS wymaga:
+
 - [ ] Publiczne repozytorium GitHub z licencją OSI (MIT ✓)
+
 - [ ] Plik `paper.md` w formacie JOSS (w `paper/`) ✓
+
 - [ ] `CITATION.cff` ✓
+
 - [ ] Testy jednostkowe (pytest) ✓
+
 - [ ] Dokumentacja (README.md) ✓
+
 - [ ] Artykuł max. 1000 słów z bibliografią
 
-Submisja: https://joss.theoj.org/papers/new
+Submisja: [https://joss.theoj.org/papers/new](https://joss.theoj.org/papers/new)
 
 ---
 
@@ -195,7 +211,7 @@ ssh -i ~/.ssh/manus_deploy -o StrictHostKeyChecking=no root@partnerbdo.pl
 /projekt/rnaseq-toolkit/
 ├── src/                    # Kod pakietu
 ├── data/
-│   ├── GSE123509/          # Batten disease (raw)
+│   ├── GSE123509/          # Batten disease (raw )
 │   ├── GSE157103/          # COVID-19 (raw)
 │   ├── batten/             # Przetworzone dane Batten
 │   └── covid19/            # Przetworzone dane COVID-19
@@ -233,7 +249,7 @@ Po upublicznieniu repozytorium, pakiet można zainstalować przez:
 pip install git+https://github.com/dawidx1233/rnaseq-toolkit.git
 ```
 
-Docelowo (po submisji do PyPI):
+Docelowo (po submisji do PyPI ):
 
 ```bash
 pip install rnaseq-toolkit
@@ -244,7 +260,7 @@ pip install rnaseq-toolkit
 ## 7. Harmonogram prac
 
 | Tydzień | Zadanie |
-|---|---|
+| --- | --- |
 | 1 | Upublicznienie repo, dodanie CI, naprawa VST, vignettes |
 | 2 | Enrichment analysis (GSEA/GO) na wszystkich 3 zestawach |
 | 3 | Uzupełnienie artykułu (wyniki, rysunki, dyskusja) |
@@ -255,3 +271,4 @@ pip install rnaseq-toolkit
 ---
 
 *Wygenerowano automatycznie przez Manus AI — 29 maja 2026*
+

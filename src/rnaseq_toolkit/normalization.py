@@ -72,12 +72,24 @@ def normalize_counts(
         return _normalize_rpkm(counts, gene_lengths)
     elif method == "tmm":
         return _normalize_tmm(counts)
-    elif method in ("deseq2", "vst", "rlog"):
+    elif method in ("deseq2", "rlog"):
         if metadata is None or design is None:
             raise ValueError(
                 f"metadata and design are required for '{method}' normalization."
             )
         return _normalize_deseq2_family(counts, metadata, design, method)
+    elif method == "vst":
+        if metadata is not None and design is not None:
+            return _normalize_deseq2_family(counts, metadata, design, method)
+        else:
+            # Fallback: log2(CPM+1) as a VST approximation when metadata unavailable
+            import warnings
+            warnings.warn(
+                "metadata/design not provided for VST; using log2(CPM+1) as approximation.",
+                UserWarning, stacklevel=2
+            )
+            cpm = _normalize_cpm(counts)
+            return np.log2(cpm + 1)
     else:
         raise ValueError(
             f"Unknown normalization method: '{method}'. "
