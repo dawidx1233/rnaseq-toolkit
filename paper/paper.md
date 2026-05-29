@@ -53,9 +53,22 @@ rnaseq-toolkit \
     --output results/
 ```
 
-The analysis of the Batten disease model (Tpp1-/- vs. wildtype) successfully identified key neurodegenerative markers. Notably, `Foxg1` was significantly upregulated ($\log_2\text{FC} = 10.87$, $p_{adj} < 10^{-24}$), while Purkinje cell markers `Gabra6` ($\log_2\text{FC} = -10.66$) and `Pcp2` ($\log_2\text{FC} = -10.59$) were strongly downregulated, consistent with the severe cerebellar degeneration characteristic of NCL.
+The analysis of the Batten disease model (Tpp1-/- vs. wildtype) successfully identified key neurodegenerative markers. Notably, `Foxg1` was significantly upregulated ($\log_2\text{FC} = 10.87$, $p_{adj} < 10^{-24}$), while Purkinje cell markers `Gabra6` ($\log_2\text{FC} = -10.66$) and `Pcp2` ($\log_2\text{FC} = -10.59$) were strongly downregulated, consistent with the severe cerebellar degeneration characteristic of NCL. Furthermore, automated Gene Set Enrichment Analysis (GSEA) on the Batten disease dataset highlighted significant alterations in the "Neuroactive ligand-receptor interaction" pathway (Normalized Enrichment Score = 1.74, FDR < 0.05), providing immediate biological context to the gene-level findings. Similar enrichment analysis on the COVID-19 dataset correctly identified "Phosphatidylinositol signaling system" and immune-related pathways among the top enriched terms.
 
-We performed a comprehensive benchmark comparing the PyDESeq2 implementation within `rnaseq-toolkit` against the edgeR-like method across all three datasets. The results demonstrated high concordance in log2 fold-change estimates for the synthetic ($r = 1.00$) and COVID-19 datasets ($r = 0.89$). Interestingly, in the Batten disease dataset (n=3 per group), the concordance was lower ($r = 0.396$), highlighting the sensitivity of different statistical models to small sample sizes and emphasizing the value of `rnaseq-toolkit`'s ability to easily switch between DEA methods for robust validation.
+We performed a comprehensive benchmark comparing the PyDESeq2 implementation within `rnaseq-toolkit` against the edgeR-like method across all three datasets (Table 1, Figure 1). The results demonstrated high concordance in log2 fold-change estimates for the synthetic ($r = 1.00$) and COVID-19 datasets ($r = 0.89$). Interestingly, in the Batten disease dataset (n=3 per group), the concordance was lower ($r = 0.396$), highlighting the sensitivity of different statistical models to small sample sizes and emphasizing the value of `rnaseq-toolkit`'s ability to easily switch between DEA methods for robust validation.
+
+| Dataset | Method | DEGs (padj<0.05) | Runtime (s) | LFC Pearson r | Jaccard Index |
+|---|---|---|---|---|---|
+| Synthetic | DESeq2 | 104 | 7.8 | 1.000 | 0.915 |
+| Synthetic | edgeR-like | 99 | 8.1 | 1.000 | 0.915 |
+| COVID-19 | DESeq2 | 113 | 60.2 | 0.890 | 0.154 |
+| COVID-19 | edgeR-like | 217 | 90.5 | 0.890 | 0.154 |
+| Batten/NCL | DESeq2 | 4829 | 55.5 | 0.396 | 0.662 |
+| Batten/NCL | edgeR-like | 4252 | 181.0 | 0.396 | 0.662 |
+*Table 1: Benchmark of DESeq2 vs edgeR-like DEA methods across three independent datasets.*
+
+![Figure 1: Benchmark Summary](https://raw.githubusercontent.com/dawidx1233/rnaseq-toolkit/main/results/benchmark_summary_v2.png)
+*Figure 1: Comparison of the number of DEGs, runtime, and method concordance (LFC Pearson correlation and Jaccard index).*
 
 # 4. Conclusion
 
